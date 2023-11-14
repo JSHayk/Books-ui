@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Averia+Sans+Libre&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Averia Sans Libre', sans-serif;
+}
+:root {
+  --white: #f8efea;
+  --yellow: #f3ab11;
+  --black: #000;
+  --grey: rgb(53, 53, 53);
+  --global-width: 1200px;
+  --yellow: #fd9d3e;
+}
+body {
+  background-image: url('./assets/background.avif');
+}
+h1 {
+  font-size: 40px;
+}
+li {
+  font-size: 18px;
+  cursor: pointer;
+  list-style-type: none;
+}
+button {
+  cursor: pointer;
+}

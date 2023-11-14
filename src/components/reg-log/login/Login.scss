@@ -1,0 +1,92 @@
+// Often useful styles
+@mixin flexible {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.login {
+    width: 500px;
+    min-height: 400px;
+    background-color: var(--white);
+    padding: 24px;
+    opacity: .8;
+    margin: auto;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    animation: fadeIn .5s ease;
+    > .container {
+        > h1 {
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        > form {
+            @include flexible;
+            flex-direction: column;
+            > div {
+                width: 80%;
+                position: relative;
+                > label {
+                    position: absolute;
+                    left: 0;
+                    top: 15px;
+                    transform: translateY(-5px);
+                    transition: all 200ms ease 0s;
+                }
+                > input {
+                    width: 100%;
+                    padding: 14px;
+                    padding-bottom: 5px;
+                    border: none;
+                    outline: none;
+                    border-bottom: 1px solid var(--grey);
+                    color: var(--grey);
+                    margin-bottom: 40px;
+                    background-color: transparent;
+                    &:focus + label, &:not(:placeholder-shown) + label {
+                        transform: translateY(-20px);
+                    }
+                }
+            }
+            .check-password {
+                display: flex;
+                justify-content: space-between;
+                font-size: 15px;
+                > input {
+                    display: block;
+                    width: 5%;
+                    height: 15px;
+                }
+                > label {
+                    padding: 2px 0 0 25px;
+                }
+                > p {
+                    // margin-bottom: 15px;
+                    transform: translateY(-3px);
+                    > a {
+                        padding-left: 5px;
+                    }
+                }
+            }
+            > button {
+                border-radius: 15px;
+                border: 1px solid var(--grey);
+                font-size: 18px;
+                padding: 10px 30px;
+                outline: none;
+                transition: all 250ms ease 0s;
+                &:hover {
+                    opacity: .7;
+                }
+            }
+        }
+    }
+}
+@keyframes fadeIn {
+    0% {
+        transform: rotate(0deg) scale(0);
+    }
+    100% {
+        transform: rotate(350deg), scale(1);
+    }
+}
