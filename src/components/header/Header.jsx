@@ -7,20 +7,6 @@ const Header = () => {
     <header>
       <Container>
         <div className="logo">
-          <h1>LOGO</h1>
-        </div>
-        <div className="navbar">
-          <ul>
-            {
-              CONFIG.headerConfig.navConfig.map(({id, name}) => {
-                  return (
-                      <li key={id}>
-                          {name}
-                      </li>
-                  )
-              })
-            }
-          </ul>
         </div>
       </Container>
     </header>

@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import bookPicture from '../../assets/book.png';
 
@@ -7,6 +8,13 @@ import './Home.scss'
 const Home = () => {
   const [data, setData] = useState({});
 
+  const navigate = useNavigate()
+
+  const navigateToPreview = (id) => {
+    navigate(`/book-preview/${id}`);
+  }
+
+
   useEffect(() => {
     fetch('http://localhost:4000/api/books')
     .then(res => {
@@ -14,9 +22,11 @@ const Home = () => {
     })
     .then(data => {
       setData(data);
+    })
+    .catch(err =>  {
+      console.error(err);
     });
   }, []);
-
 
   return (
     <div className='home'>
@@ -32,7 +42,9 @@ const Home = () => {
             } = book;
 
             return (
-              <li key={id} className='home__list__item'>
+              <li onClick={() => {
+                navigateToPreview(id);
+              }} key={id} className='home__list__item'>
                 <img className='home__list__item--picture' src={bookPicture} alt="book" />
                 <div className='home__list__item__content'>
                   <h1 className='home__list__item__content--title'>
