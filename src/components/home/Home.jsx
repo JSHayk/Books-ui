@@ -7,6 +7,10 @@ import './Home.scss'
 
 const Home = () => {
   const [data, setData] = useState({});
+  const [searchValue, setSearchValue] = useState('');
+
+  const [paginationNumber, setPaginationNumber] = useState(1);
+
 
   const navigate = useNavigate()
 
@@ -14,6 +18,16 @@ const Home = () => {
     navigate(`/book-preview/${id}`);
   }
 
+  const doSearch = async () => {
+    try {
+      const res = await fetch(`http://localhost:4000/api/search?q=${searchValue}`);
+      const data = await res.json();
+
+      setData(data);
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   useEffect(() => {
     fetch('http://localhost:4000/api/books')
@@ -28,9 +42,23 @@ const Home = () => {
     });
   }, []);
 
+  useEffect(() => {
+    if (searchValue.trim()) {
+      console.log(searchValue, 's')
+      doSearch();
+    }
+  }, [searchValue]);
+
+
+
   return (
     <div className='home'>
-      <h1 className="home--title">Recommended</h1>
+     <div className="row">
+       <h1 className="home--title">Recommended</h1>
+       <div className="home__tools">
+         <input value={searchValue} onChange={e => setSearchValue(e.target.value)} className="home__tools--search" type="text" placeholder="Search by author" />
+       </div>
+     </div>
       <ul className='home__list'>
         {
           data.list?.map(book => {
@@ -61,6 +89,12 @@ const Home = () => {
             )
           })
         }
+      </ul>
+      <ul className="home__pagination">
+        <li className="home__pagination--item">1</li>
+        <li className="home__pagination--item">2</li>
+        <li className="home__pagination--item">3</li>
+        <li className="home__pagination--item">4</li>
       </ul>
     </div>
   )
