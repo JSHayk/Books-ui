@@ -1,0 +1,31 @@
+.book-preview {
+  display: flex;
+  &__container {
+    background-color: #fff;
+    padding: 24px;
+    border-radius: 12px;
+    max-width: 720px;
+  }
+
+  &__content {
+    padding: 23px;
+
+    &--title {
+      font-weight: 600;
+      font-size: 24px;
+      color: #181818;
+    }
+
+    &--author {
+      font-size: 16px;
+      font-weight: 400;
+      color: #252525;
+      margin-top: 12px;
+    }
+  }
+
+  .column {
+    display: flex;
+    flex-direction: column;
+  }
+}
